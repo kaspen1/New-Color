@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forbidden Color Flicker</title>
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      background: black;
+      overflow: hidden;
+    }
+    .flicker {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-family: sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <div id="flicker" class="flicker"></div>
+  <script>
+    const flickerDiv = document.getElementById("flicker");
+    let isRedGreen = true;
+
+    setInterval(() => {
+      if (isRedGreen) {
+        flickerDiv.style.backgroundColor = "rgb(255,0,0)";
+        flickerDiv.style.color = "green";
+        flickerDiv.innerText = "Red";
+      } else {
+        flickerDiv.style.backgroundColor = "rgb(0,255,0)";
+        flickerDiv.style.color = "red";
+        flickerDiv.innerText = "Green";
+      }
+      isRedGreen = !isRedGreen;
+    }, 30); // fast flicker at ~33 Hz
+  </script>
+</body>
+</html>
